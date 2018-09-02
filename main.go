@@ -16,7 +16,7 @@ const (
 )
 
 
-type Pastebin struct {
+type Paste struct {
 	apiKey string
 	title string
 	text string
@@ -26,7 +26,7 @@ type Pastebin struct {
 }
 
 
-func (p *Pastebin) NewPaste() (string, error) {
+func (p *Paste) NewPaste() (string, error) {
 
 	p.api_option = "paste"
 
@@ -39,6 +39,7 @@ func (p *Pastebin) NewPaste() (string, error) {
 		"api_paste_private": {strconv.Itoa(p.privacy)},
 	}
 	data, respErr := http.PostForm(API_URL, data_values)
+	
 
 	if strings.TrimSpace(p.title) == "" {
 		err := errors.New("Empty title was given")
@@ -46,20 +47,21 @@ func (p *Pastebin) NewPaste() (string, error) {
 	} else if respErr != nil {
 		return "", respErr
 	} else {
+		defer data.Body.Close()
 		returnedData, err := ioutil.ReadAll(data.Body)
 		if err != nil {
 			return "", err
 		}
-
 		return string(returnedData), nil
 	}
 
+	
 }
 
 func main() {
 
 
-	p := &Pastebin{
+	p := &Paste{
 		apiKey: os.Getenv("PASTEBIN_DEVELOPER_KEY"),
 		title: "Title",
 		text: "Text",
