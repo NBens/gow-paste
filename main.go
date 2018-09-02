@@ -49,9 +49,9 @@ func (p *Pastebin) NewPaste() (string, error) {
 		returnedData, err := ioutil.ReadAll(data.Body)
 		if err != nil {
 			return "", err
-		} else {
-			return string(returnedData), nil
 		}
+
+		return string(returnedData), nil
 	}
 
 }
