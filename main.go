@@ -15,6 +15,11 @@ const (
 	API_URL = "https://pastebin.com/api/api_post.php"
 )
 
+/*
+* Paste Structure
+* check https://pastebin.com/api/ for more details about privacy and expirationDate.
+*/
+
 
 type Paste struct {
 	apiKey string
@@ -24,6 +29,10 @@ type Paste struct {
 	expirationDate string // N: Never, 5M: 5 Minutes, 5H: 5Hours, 2D: 2 Days
 	api_option string
 }
+
+/*
+* Method responsible for creating a new paste, returns the paste's url (string)
+*/
 
 
 func (p *Paste) NewPaste() (string, error) {
