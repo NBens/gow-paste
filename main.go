@@ -17,6 +17,8 @@ const (
 
 /*
 * Paste Structure
+* Paste.privacy: 0=public 1=unlisted 2=private
+* Paste.expirationDate:  // N: Never, 5M: 5 Minutes, 5H: 5Hours, 2D: 2 Days
 * check https://pastebin.com/api/ for more details about privacy and expirationDate.
 */
 
@@ -25,8 +27,8 @@ type Paste struct {
 	apiKey string
 	title string
 	text string
-	privacy int // 0=public 1=unlisted 2=private
-	expirationDate string // N: Never, 5M: 5 Minutes, 5H: 5Hours, 2D: 2 Days
+	privacy int 
+	expirationDate string
 	api_option string
 }
 
