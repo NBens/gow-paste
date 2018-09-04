@@ -41,5 +41,9 @@ func main() {
 		fmt.Println(list)
 	}
 
+	p.pasteID = "xA5DG0" // Set paste id in the Paste struct
+
+	p.Delete(u.userKey) // Delete a paste: Delete takes userKey(The generated key)
+
 
 }
