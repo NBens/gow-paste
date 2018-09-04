@@ -49,25 +49,34 @@ func (p *Paste) NewPaste() (string, error) {
 		"api_expire_date": {p.expirationDate},
 		"api_paste_private": {strconv.Itoa(p.privacy)},
 	}
-	data, respErr := http.PostForm(API_URL, data_values)
-	
+	data, httpResponseError := http.PostForm(API_URL, data_values)
 
-	if strings.TrimSpace(p.title) == "" {
-		err := errors.New("Empty title was given")
+	if strings.TrimSpace(p.text) == "" {
+		err := errors.New("Empty text was given")
 		return "", err
-	} else if respErr != nil {
-		return "", respErr
-	} else {
-		defer data.Body.Close()
-		returnedData, err := ioutil.ReadAll(data.Body)
-		if err != nil {
-			return "", err
-		}
-		return string(returnedData), nil
+	} 
+
+	if httpResponseError != nil {
+		return "", httpResponseError
 	}
+	
+	if data.StatusCode != 200 {
+		return "", errors.New("Couldn't create the paste")
+	}
+
+	defer data.Body.Close()
+	
+	returnedData, err := ioutil.ReadAll(data.Body)
+	if err != nil {
+		return "", err
+	}
+	return string(returnedData), nil
 
 	
 }
+
+
+
 
 func main() {
 
