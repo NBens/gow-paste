@@ -22,8 +22,8 @@ func main() {
 
 	u := &User{
 		apiKey: developerKey,
-		username: "nizarnizario",
-		password: "nizarnizar",
+		username: "USERNAME",
+		password: "PASSWORD",
 	}
 
 	u.GenerateKey()
