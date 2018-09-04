@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 	"os"
+	. "github.com/NBens/gow-paste"
 )
 
 func main() {
 
 	developerKey := os.Getenv("PASTEBIN_DEVELOPER_KEY")
-	/*
+	
 
 	p := &Paste{
 		apiKey: developerKey,
@@ -19,14 +20,6 @@ func main() {
 		privacy: 0,
 	}
 
-	newPaste, err := p.NewPaste()
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(newPaste)
-	}
-	*/
-
 	u := &User{
 		apiKey: developerKey,
 		username: "nizarnizario",
@@ -35,6 +28,14 @@ func main() {
 
 	u.GenerateKey()
 
+	newPrivate, err := p.PrivatePaste(u.userKey)
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(newPrivate)
+	}
+
 	list, err := u.List(10)
 
 	if err != nil {
@@ -42,5 +43,6 @@ func main() {
 	} else {
 		fmt.Println(list)
 	}
+
 
 }
