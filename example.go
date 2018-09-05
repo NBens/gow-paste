@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -8,18 +7,17 @@ import (
 func main() {
 
 	developerKey := "Your Pastebin Developer Key" // or use os.Getenv("PASTEBIN_DEVELOPER_KEY") if you set your env variables up
-	
 
 	p := &Paste{
-		apiKey: developerKey,
-		title: "Title", // Paste title
-		text: "echo 'Hello World';", // Paste body
-		expirationDate: "N", // Expiration date (N: Never)
-		format: "PHP", // Syntax Highlighting
+		apiKey:         developerKey,
+		title:          "Title",               // Paste title
+		text:           "echo 'Hello World';", // Paste body
+		expirationDate: "N",                   // Expiration date (N: Never)
+		format:         "PHP",                 // Syntax Highlighting
 	}
 
 	u := &User{
-		apiKey: developerKey,
+		apiKey:   developerKey,
 		username: "USERNAME", // Set your username here
 		password: "PASSWORD", // Set your password here
 	}
@@ -45,6 +43,5 @@ func main() {
 	p.pasteID = "xA5DG0" // Set paste id in the Paste struct
 
 	p.Delete(u.userKey) // Delete a paste: Delete takes userKey(The generated key)
-
 
 }

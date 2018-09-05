@@ -14,7 +14,6 @@ import (
 // Paste.expirationDate:  // N: Never, 5M: 5 Minutes, 5H: 5Hours, 2D: 2 Days
 // Paste.format: Syntax highlight format
 // check https://pastebin.com/api/ for more details about privacy and expirationDate.
-
 type Paste struct {
 	apiKey         string // Required Parameter
 	title          string // Optional Parameter
